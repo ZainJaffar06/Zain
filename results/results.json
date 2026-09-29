@@ -1,0 +1,928 @@
+{
+  "versions": {
+    "Python": "3.11.15",
+    "NumPy": "2.4.6",
+    "pandas": "3.0.6",
+    "SciPy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "SHAP": "0.51.0",
+    "matplotlib": "3.11.2",
+    "run_date": "2026-09-29"
+  },
+  "preprocessing": {
+    "per_table": {
+      "Demographics": {
+        "rows_in_file": 1837,
+        "studies": 1837,
+        "features_raw": 12,
+        "features_after_zero_variance": 12
+      },
+      "OUT_MED": {
+        "rows_in_file": 1892,
+        "studies": 1837,
+        "features_raw": 1282,
+        "features_after_zero_variance": 566
+      },
+      "INP_MED": {
+        "rows_in_file": 1892,
+        "studies": 1837,
+        "features_raw": 1282,
+        "features_after_zero_variance": 618
+      },
+      "ICD": {
+        "rows_in_file": 1892,
+        "studies": 1837,
+        "features_raw": 282,
+        "features_after_zero_variance": 258
+      },
+      "LABS": {
+        "rows_in_file": 1892,
+        "studies": 1837,
+        "features_raw": 44,
+        "features_after_zero_variance": 42
+      },
+      "Vitals": {
+        "rows_in_file": 1892,
+        "studies": 1837,
+        "features_raw": 9,
+        "features_after_zero_variance": 9
+      }
+    },
+    "total_features": 1505,
+    "missing_values_imputed": 0,
+    "studies_joined": 1837
+  },
+  "cohort": [
+    {
+      "Split": "Training",
+      "Studies, n": 1454,
+      "PE-positive, n (%)": "508 (34.9)",
+      "PE-negative, n (%)": "946 (65.1)",
+      "Central, n (%)": "202 (13.9)",
+      "Segmental, n (%)": "281 (19.3)",
+      "Subsegmental, n (%)": "25 (1.7)"
+    },
+    {
+      "Split": "Validation",
+      "Studies, n": 193,
+      "PE-positive, n (%)": "108 (56.0)",
+      "PE-negative, n (%)": "85 (44.0)",
+      "Central, n (%)": "27 (14.0)",
+      "Segmental, n (%)": "52 (26.9)",
+      "Subsegmental, n (%)": "29 (15.0)"
+    },
+    {
+      "Split": "Test",
+      "Studies, n": 190,
+      "PE-positive, n (%)": "110 (57.9)",
+      "PE-negative, n (%)": "80 (42.1)",
+      "Central, n (%)": "28 (14.7)",
+      "Segmental, n (%)": "54 (28.4)",
+      "Subsegmental, n (%)": "28 (14.7)"
+    },
+    {
+      "Split": "Total",
+      "Studies, n": 1837,
+      "PE-positive, n (%)": "726 (39.5)",
+      "PE-negative, n (%)": "1111 (60.5)",
+      "Central, n (%)": "257 (14.0)",
+      "Segmental, n (%)": "387 (21.1)",
+      "Subsegmental, n (%)": "82 (4.5)"
+    }
+  ],
+  "model": {
+    "elastic_net": {
+      "C": 0.1,
+      "l1_ratio": 0.99,
+      "class_weight": "balanced",
+      "solver": "saga",
+      "max_iter": 1000,
+      "nonzero_coefficients": 199
+    },
+    "svc": {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": "scale",
+      "class_weight": null,
+      "probability": true
+    }
+  },
+  "table1": [
+    {
+      "Analysis": "Full test cohort",
+      "n (PE+/PE\u2212)": "190 (110/80)",
+      "Arm": "Imaging (provided PENet score)",
+      "AUROC": 0.7961363636363636,
+      "AUROC_lo": 0.7293068181818181,
+      "AUROC_hi": 0.8521647727272728,
+      "AUROC_DeLong_lo": 0.7328244376932265,
+      "AUROC_DeLong_hi": 0.8594482895795006,
+      "AUPRC": 0.852813881360601,
+      "AUPRC_lo": 0.8036767673238392,
+      "AUPRC_hi": 0.8969005914039604
+    },
+    {
+      "Analysis": "Full test cohort",
+      "n (PE+/PE\u2212)": "190 (110/80)",
+      "Arm": "EHR (elastic-net)",
+      "AUROC": 0.9131818181818182,
+      "AUROC_lo": 0.8594119318181819,
+      "AUROC_hi": 0.9600113636363635,
+      "AUROC_DeLong_lo": 0.8631795201507815,
+      "AUROC_DeLong_hi": 0.9631841162128549,
+      "AUPRC": 0.8844092394755996,
+      "AUPRC_lo": 0.8132032844890162,
+      "AUPRC_hi": 0.9597588755777817
+    },
+    {
+      "Analysis": "Full test cohort",
+      "n (PE+/PE\u2212)": "190 (110/80)",
+      "Arm": "Late fusion (average)",
+      "AUROC": 0.9442045454545455,
+      "AUROC_lo": 0.9086335227272727,
+      "AUROC_hi": 0.9742045454545454,
+      "AUROC_DeLong_lo": 0.91155857320471,
+      "AUROC_DeLong_hi": 0.9768505177043809,
+      "AUPRC": 0.9524561687271595,
+      "AUPRC_lo": 0.920074081589701,
+      "AUPRC_hi": 0.9799073868643713
+    },
+    {
+      "Analysis": "Full test cohort",
+      "n (PE+/PE\u2212)": "190 (110/80)",
+      "Arm": "Late fusion (maximum)",
+      "AUROC": 0.8919318181818182,
+      "AUROC_lo": 0.8386335227272728,
+      "AUROC_hi": 0.9407954545454545,
+      "AUROC_DeLong_lo": 0.8403321322296395,
+      "AUROC_DeLong_hi": 0.9435315041339969,
+      "AUPRC": 0.8710696494168961,
+      "AUPRC_lo": 0.8019768270962958,
+      "AUPRC_hi": 0.9453157757507693
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "n (PE+/PE\u2212)": "162 (82/80)",
+      "Arm": "Imaging (provided PENet score)",
+      "AUROC": 0.8419207317073172,
+      "AUROC_lo": 0.7813986280487805,
+      "AUROC_hi": 0.8983269817073172,
+      "AUROC_DeLong_lo": 0.7800149657299708,
+      "AUROC_DeLong_hi": 0.9038264976846636,
+      "AUPRC": 0.863893517645012,
+      "AUPRC_lo": 0.8119226151991884,
+      "AUPRC_hi": 0.9136899640114293
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "n (PE+/PE\u2212)": "162 (82/80)",
+      "Arm": "EHR (elastic-net)",
+      "AUROC": 0.9185975609756097,
+      "AUROC_lo": 0.8646227134146343,
+      "AUROC_hi": 0.9643445121951219,
+      "AUROC_DeLong_lo": 0.8681984044443087,
+      "AUROC_DeLong_hi": 0.9689967175069105,
+      "AUPRC": 0.8643211820592742,
+      "AUPRC_lo": 0.7807940713474951,
+      "AUPRC_hi": 0.9549312777288791
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "n (PE+/PE\u2212)": "162 (82/80)",
+      "Arm": "Late fusion (average)",
+      "AUROC": 0.9591463414634146,
+      "AUROC_lo": 0.9292682926829269,
+      "AUROC_hi": 0.9827820121951221,
+      "AUROC_DeLong_lo": 0.9316131075296632,
+      "AUROC_DeLong_hi": 0.9866795753971662,
+      "AUPRC": 0.9550385490217351,
+      "AUPRC_lo": 0.9221512512606411,
+      "AUPRC_hi": 0.9825208668575793
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "n (PE+/PE\u2212)": "162 (82/80)",
+      "Arm": "Late fusion (maximum)",
+      "AUROC": 0.911890243902439,
+      "AUROC_lo": 0.8599047256097562,
+      "AUROC_hi": 0.9554878048780487,
+      "AUROC_DeLong_lo": 0.863274548101851,
+      "AUROC_DeLong_hi": 0.960505939703027,
+      "AUPRC": 0.856746997062029,
+      "AUPRC_lo": 0.7756565854564621,
+      "AUPRC_hi": 0.9447837159955361
+    }
+  ],
+  "delong": [
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "Late fusion (average) vs EHR (elastic-net)",
+      "AUROC A": 0.9442045454545455,
+      "AUROC B": 0.9131818181818182,
+      "Difference": 0.031022727272727257,
+      "Diff_lo": 0.0011217193394466932,
+      "Diff_hi": 0.06092373520600782,
+      "z": 2.0335282874149687,
+      "p": 0.041999178675813806
+    },
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "Late fusion (average) vs Imaging (provided PENet score)",
+      "AUROC A": 0.9442045454545455,
+      "AUROC B": 0.7961363636363635,
+      "Difference": 0.14806818181818193,
+      "Diff_lo": 0.0860561324453552,
+      "Diff_hi": 0.21008023119100866,
+      "z": 4.6799555779687925,
+      "p": 2.869370807318506e-06
+    },
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "EHR (elastic-net) vs Imaging (provided PENet score)",
+      "AUROC A": 0.9131818181818182,
+      "AUROC B": 0.7961363636363635,
+      "Difference": 0.11704545454545467,
+      "Diff_lo": 0.035415594851162926,
+      "Diff_hi": 0.19867531423974644,
+      "z": 2.8103575305438557,
+      "p": 0.004948649287798761
+    },
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "Late fusion (maximum) vs EHR (elastic-net)",
+      "AUROC A": 0.8919318181818182,
+      "AUROC B": 0.9131818181818182,
+      "Difference": -0.02124999999999999,
+      "Diff_lo": -0.05194195114639104,
+      "Diff_hi": 0.009441951146391056,
+      "z": -1.3570333082228123,
+      "p": 0.17477062733709203
+    },
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "Late fusion (average) vs Late fusion (maximum)",
+      "AUROC A": 0.9442045454545455,
+      "AUROC B": 0.8919318181818182,
+      "Difference": 0.05227272727272725,
+      "Diff_lo": 0.023004058825406144,
+      "Diff_hi": 0.08154139572004836,
+      "z": 3.500485361640114,
+      "p": 0.00046441174382926947
+    },
+    {
+      "Analysis": "Full test cohort",
+      "Comparison": "Late fusion (maximum) vs Imaging (provided PENet score)",
+      "AUROC A": 0.8919318181818182,
+      "AUROC B": 0.7961363636363635,
+      "Difference": 0.09579545454545468,
+      "Diff_lo": 0.02688664556271088,
+      "Diff_hi": 0.1647042635281985,
+      "z": 2.7247472954598586,
+      "p": 0.006435071920186357
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "Late fusion (average) vs EHR (elastic-net)",
+      "AUROC A": 0.9591463414634147,
+      "AUROC B": 0.9185975609756096,
+      "Difference": 0.04054878048780508,
+      "Diff_lo": 0.008619583671900875,
+      "Diff_hi": 0.07247797730370928,
+      "z": 2.489120231064205,
+      "p": 0.012805965074882516
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "Late fusion (average) vs Imaging (provided PENet score)",
+      "AUROC A": 0.9591463414634147,
+      "AUROC B": 0.8419207317073172,
+      "Difference": 0.11722560975609753,
+      "Diff_lo": 0.055601022942307725,
+      "Diff_hi": 0.17885019656988732,
+      "z": 3.7284176170822945,
+      "p": 0.00019268587774685716
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "EHR (elastic-net) vs Imaging (provided PENet score)",
+      "AUROC A": 0.9185975609756096,
+      "AUROC B": 0.8419207317073172,
+      "Difference": 0.07667682926829245,
+      "Diff_lo": -0.004734634101722368,
+      "Diff_hi": 0.15808829263830726,
+      "z": 1.8460125778946042,
+      "p": 0.06489037915388964
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "Late fusion (maximum) vs EHR (elastic-net)",
+      "AUROC A": 0.911890243902439,
+      "AUROC B": 0.9185975609756096,
+      "Difference": -0.006707317073170627,
+      "Diff_lo": -0.03605000368912174,
+      "Diff_hi": 0.022635369542780493,
+      "z": -0.44802787268524624,
+      "p": 0.6541330809675445
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "Late fusion (average) vs Late fusion (maximum)",
+      "AUROC A": 0.9591463414634147,
+      "AUROC B": 0.911890243902439,
+      "Difference": 0.04725609756097571,
+      "Diff_lo": 0.01711990151964734,
+      "Diff_hi": 0.07739229360230407,
+      "z": 3.073445337709242,
+      "p": 0.002116024495557187
+    },
+    {
+      "Analysis": "Non-subsegmental subset",
+      "Comparison": "Late fusion (maximum) vs Imaging (provided PENet score)",
+      "AUROC A": 0.911890243902439,
+      "AUROC B": 0.8419207317073172,
+      "Difference": 0.06996951219512182,
+      "Diff_lo": -0.0006762501277653571,
+      "Diff_hi": 0.14061527451800898,
+      "z": 1.941238078451725,
+      "p": 0.0522294063798557
+    }
+  ],
+  "se_check": {
+    "Imaging (provided PENet score)": {
+      "bootstrap_se": 0.031779985476827366,
+      "delong_se": 0.03230200303221278
+    },
+    "EHR (elastic-net)": {
+      "bootstrap_se": 0.025864775772291015,
+      "delong_se": 0.025511376546447334
+    },
+    "Late fusion (average)": {
+      "bootstrap_se": 0.01679577265640963,
+      "delong_se": 0.016656108290732403
+    },
+    "Late fusion (maximum)": {
+      "bootstrap_se": 0.026536448506648953,
+      "delong_se": 0.02632637038376465
+    }
+  },
+  "table2": {
+    "EHR (SVC)": {
+      "TP": 73,
+      "FP": 5,
+      "FN": 37,
+      "TN": 75,
+      "Sensitivity": [
+        73,
+        110,
+        0.6636363636363637,
+        0.5711495969124046,
+        0.745079660626378
+      ],
+      "Specificity": [
+        75,
+        80,
+        0.9375,
+        0.8618985123272557,
+        0.973010624329158
+      ],
+      "PPV": [
+        73,
+        78,
+        0.9358974358974359,
+        0.8585640453682883,
+        0.9723106846262091
+      ],
+      "NPV": [
+        75,
+        112,
+        0.6696428571428571,
+        0.5781822928533298,
+        0.7498522501060998
+      ],
+      "Accuracy": [
+        148,
+        190,
+        0.7789473684210526,
+        0.7147430280708038,
+        0.8320956133885105
+      ],
+      "F1": 0.776595744680851,
+      "LR+": [
+        10.618181818181819,
+        4.497393197380513,
+        25.069141205984668
+      ],
+      "LR-": [
+        0.3587878787878787,
+        0.27429608329511257,
+        0.46930579692823204
+      ]
+    },
+    "Late fusion (maximum)": {
+      "TP": 106,
+      "FP": 27,
+      "FN": 4,
+      "TN": 53,
+      "Sensitivity": [
+        106,
+        110,
+        0.9636363636363636,
+        0.910213207186402,
+        0.985769689173482
+      ],
+      "Specificity": [
+        53,
+        80,
+        0.6625,
+        0.5535652339817697,
+        0.756543873919184
+      ],
+      "PPV": [
+        106,
+        133,
+        0.7969924812030075,
+        0.7207472861790765,
+        0.85656313334455
+      ],
+      "NPV": [
+        53,
+        57,
+        0.9298245614035088,
+        0.832998299039663,
+        0.972373579770934
+      ],
+      "Accuracy": [
+        159,
+        190,
+        0.8368421052631579,
+        0.7777225227963667,
+        0.882610931041296
+      ],
+      "F1": 0.8724279835390947,
+      "LR+": [
+        2.855218855218855,
+        2.0959132729487218,
+        3.8896049833817345
+      ],
+      "LR-": [
+        0.05488850771869642,
+        0.020710807336232522,
+        0.14546744753473437
+      ]
+    }
+  },
+  "prevalence": [
+    {
+      "Feature": "Pulmonary-circulation diagnosis (presence)",
+      "Split": "Training",
+      "PE-positive, n/N (%)": "474/508 (93.3)",
+      "PE-negative, n/N (%)": "153/946 (16.2)",
+      "Odds ratio": 72.25720876585929,
+      "Fisher p": 2.362475387507731e-197
+    },
+    {
+      "Feature": "Pulmonary-circulation diagnosis (presence)",
+      "Split": "Test",
+      "PE-positive, n/N (%)": "97/110 (88.2)",
+      "PE-negative, n/N (%)": "11/80 (13.8)",
+      "Odds ratio": 46.80419580419581,
+      "Fisher p": 2.0074368040990612e-26
+    },
+    {
+      "Feature": "Any anticoagulant/thrombolytic (inpatient or outpatient)",
+      "Split": "Training",
+      "PE-positive, n/N (%)": "130/508 (25.6)",
+      "PE-negative, n/N (%)": "202/946 (21.4)",
+      "Odds ratio": 1.2666980983812668,
+      "Fisher p": 0.0767592564354198
+    },
+    {
+      "Feature": "Any anticoagulant/thrombolytic (inpatient or outpatient)",
+      "Split": "Test",
+      "PE-positive, n/N (%)": "40/110 (36.4)",
+      "PE-negative, n/N (%)": "12/80 (15.0)",
+      "Odds ratio": 3.238095238095238,
+      "Fisher p": 0.0015864084029121538
+    },
+    {
+      "Feature": "D-dimer measured",
+      "Split": "Training",
+      "PE-positive, n/N (%)": "151/508 (29.7)",
+      "PE-negative, n/N (%)": "302/946 (31.9)",
+      "Odds ratio": 0.9019607843137255,
+      "Fisher p": 0.4060156286423222
+    },
+    {
+      "Feature": "D-dimer measured",
+      "Split": "Test",
+      "PE-positive, n/N (%)": "32/110 (29.1)",
+      "PE-negative, n/N (%)": "28/80 (35.0)",
+      "Odds ratio": 0.7619047619047619,
+      "Fisher p": 0.4308163875476785
+    },
+    {
+      "Feature": "Venous-disease diagnosis (presence)",
+      "Split": "Training",
+      "PE-positive, n/N (%)": "274/508 (53.9)",
+      "PE-negative, n/N (%)": "195/946 (20.6)",
+      "Odds ratio": 4.509620863467017,
+      "Fisher p": 1.9713191952096903e-37
+    },
+    {
+      "Feature": "Venous-disease diagnosis (presence)",
+      "Split": "Test",
+      "PE-positive, n/N (%)": "54/110 (49.1)",
+      "PE-negative, n/N (%)": "17/80 (21.2)",
+      "Odds ratio": 3.573529411764706,
+      "Fisher p": 0.00012873892586383337
+    }
+  ],
+  "shap": {
+    "top20": [
+      {
+        "rank": 1,
+        "feature": "DISEASES OF PULMONARY CIRCULATION:presence",
+        "mean_abs_shap": 1.7573728426776145,
+        "share_of_total_pct": 34.435460159310104,
+        "leakage_group": "Pulmonary-circulation diagnoses",
+        "cumulative_share_pct": 34.435460159310104
+      },
+      {
+        "rank": 2,
+        "feature": "DISEASES OF PULMONARY CIRCULATION:frequency",
+        "mean_abs_shap": 0.3232927769674939,
+        "share_of_total_pct": 6.334874006641934,
+        "leakage_group": "Pulmonary-circulation diagnoses",
+        "cumulative_share_pct": 40.770334165952036
+      },
+      {
+        "rank": 3,
+        "feature": "DISEASES OF VEINS AND LYMPHATICS, AND OTHER DISEASES OF CIRCULATORY SYSTEM:presence",
+        "mean_abs_shap": 0.3013080874575783,
+        "share_of_total_pct": 5.904087276957401,
+        "leakage_group": "Venous-disease diagnoses",
+        "cumulative_share_pct": 46.674421442909434
+      },
+      {
+        "rank": 4,
+        "feature": "OTHER DISEASES OF RESPIRATORY SYSTEM:presence",
+        "mean_abs_shap": 0.2183754323895963,
+        "share_of_total_pct": 4.2790342033318645,
+        "leakage_group": "",
+        "cumulative_share_pct": 50.953455646241295
+      },
+      {
+        "rank": 5,
+        "feature": "Symptoms involving respiratory system and other chest symptoms:frequency",
+        "mean_abs_shap": 0.13891835723356563,
+        "share_of_total_pct": 2.7220846025050465,
+        "leakage_group": "",
+        "cumulative_share_pct": 53.675540248746344
+      },
+      {
+        "rank": 6,
+        "feature": "NONSPECIFIC ABNORMAL FINDINGS:presence",
+        "mean_abs_shap": 0.13742122712427524,
+        "share_of_total_pct": 2.6927485601014194,
+        "leakage_group": "",
+        "cumulative_share_pct": 56.368288808847765
+      },
+      {
+        "rank": 7,
+        "feature": "ptt:Binary",
+        "mean_abs_shap": 0.12984662830364616,
+        "share_of_total_pct": 2.544325419845588,
+        "leakage_group": "",
+        "cumulative_share_pct": 58.91261422869335
+      },
+      {
+        "rank": 8,
+        "feature": "DISEASES OF ARTERIES, ARTERIOLES, AND CAPILLARIES:presence",
+        "mean_abs_shap": 0.1254346900509625,
+        "share_of_total_pct": 2.4578741442618925,
+        "leakage_group": "",
+        "cumulative_share_pct": 61.37048837295524
+      },
+      {
+        "rank": 9,
+        "feature": "Symptoms involving respiratory system and other chest symptoms:presence",
+        "mean_abs_shap": 0.12481588457989388,
+        "share_of_total_pct": 2.44574874285141,
+        "leakage_group": "",
+        "cumulative_share_pct": 63.81623711580665
+      },
+      {
+        "rank": 10,
+        "feature": "inr:Binary",
+        "mean_abs_shap": 0.12231599001653569,
+        "share_of_total_pct": 2.39676367972284,
+        "leakage_group": "",
+        "cumulative_share_pct": 66.2130007955295
+      },
+      {
+        "rank": 11,
+        "feature": "RHEUMATISM, EXCLUDING THE BACK:frequency",
+        "mean_abs_shap": 0.0832277111978214,
+        "share_of_total_pct": 1.6308346547203947,
+        "leakage_group": "",
+        "cumulative_share_pct": 67.84383545024988
+      },
+      {
+        "rank": 12,
+        "feature": "CHRONIC OBSTRUCTIVE PULMONARY DISEASE AND ALLIED CONDITIONS:presence",
+        "mean_abs_shap": 0.06577712038345696,
+        "share_of_total_pct": 1.2888929163759684,
+        "leakage_group": "",
+        "cumulative_share_pct": 69.13272836662586
+      },
+      {
+        "rank": 13,
+        "feature": "current_age_yrs",
+        "mean_abs_shap": 0.0628638410786897,
+        "share_of_total_pct": 1.231807640561985,
+        "leakage_group": "",
+        "cumulative_share_pct": 70.36453600718784
+      },
+      {
+        "rank": 14,
+        "feature": "White",
+        "mean_abs_shap": 0.05619037147726755,
+        "share_of_total_pct": 1.101041993680815,
+        "leakage_group": "",
+        "cumulative_share_pct": 71.46557800086865
+      },
+      {
+        "rank": 15,
+        "feature": "HEPARIN AND RELATED PREPARATIONS:Frequeny",
+        "mean_abs_shap": 0.048643038487383786,
+        "share_of_total_pct": 0.9531531233337576,
+        "leakage_group": "Anticoagulant/thrombolytic medications",
+        "cumulative_share_pct": 72.41873112420241
+      },
+      {
+        "rank": 16,
+        "feature": "OTHER DISEASES OF THE UPPER RESPIRATORY TRACT:presence",
+        "mean_abs_shap": 0.048222360695541686,
+        "share_of_total_pct": 0.9449100044069775,
+        "leakage_group": "",
+        "cumulative_share_pct": 73.36364112860939
+      },
+      {
+        "rank": 17,
+        "feature": "height_inch",
+        "mean_abs_shap": 0.04777989655546782,
+        "share_of_total_pct": 0.9362399852184358,
+        "leakage_group": "",
+        "cumulative_share_pct": 74.29988111382782
+      },
+      {
+        "rank": 18,
+        "feature": "d-dimer:Value",
+        "mean_abs_shap": 0.04725913325438658,
+        "share_of_total_pct": 0.9260357055850424,
+        "leakage_group": "D-dimer testing",
+        "cumulative_share_pct": 75.22591681941286
+      },
+      {
+        "rank": 19,
+        "feature": "ISCHEMIC HEART DISEASE:presence",
+        "mean_abs_shap": 0.045245492330126515,
+        "share_of_total_pct": 0.886578710382554,
+        "leakage_group": "",
+        "cumulative_share_pct": 76.11249552979541
+      },
+      {
+        "rank": 20,
+        "feature": " PNEUMONIA AND INFLUENZA:presence",
+        "mean_abs_shap": 0.04347089008342939,
+        "share_of_total_pct": 0.8518056426073332,
+        "leakage_group": "",
+        "cumulative_share_pct": 76.96430117240274
+      }
+    ],
+    "group_share_pct": {
+      "Pulmonary-circulation diagnoses": 40.770334165952036,
+      "Anticoagulant/thrombolytic medications": 0.9531531233337576,
+      "D-dimer testing": 0.9260357055850424,
+      "Venous-disease diagnoses": 5.904087276957401
+    },
+    "n_nonzero_features": 199,
+    "total_mean_abs": 5.103381324214668
+  },
+  "ablation": [
+    {
+      "Model": "Full model (reference)",
+      "Features removed": 0,
+      "Features used": 1505,
+      "EHR AUROC": 0.9131818181818182,
+      "EHR lo": 0.8594119318181819,
+      "EHR hi": 0.9600113636363635,
+      "Average fusion AUROC": 0.9442045454545455,
+      "Average fusion lo": 0.9086335227272727,
+      "Average fusion hi": 0.9742045454545454,
+      "EHR AUROC nonsub": 0.9185975609756097,
+      "Fusion AUROC nonsub": 0.9591463414634146,
+      "Fusion vs imaging \u0394": 0.14806818181818193,
+      "Fusion vs imaging p": 2.869370807318506e-06,
+      "EHR \u0394 vs full": NaN,
+      "EHR \u0394 lo": NaN,
+      "EHR \u0394 hi": NaN,
+      "EHR p": NaN,
+      "Average fusion \u0394 vs full": NaN,
+      "Average fusion \u0394 lo": NaN,
+      "Average fusion \u0394 hi": NaN,
+      "Average fusion p": NaN
+    },
+    {
+      "Model": "Without pulmonary-circulation diagnoses",
+      "Features removed": 2,
+      "Features used": 1503,
+      "EHR AUROC": 0.7672727272727272,
+      "EHR lo": 0.6962500000000001,
+      "EHR hi": 0.8351249999999999,
+      "Average fusion AUROC": 0.84,
+      "Average fusion lo": 0.7817045454545455,
+      "Average fusion hi": 0.8927301136363636,
+      "EHR AUROC nonsub": 0.7977134146341464,
+      "Fusion AUROC nonsub": 0.8842987804878047,
+      "Fusion vs imaging \u0394": 0.04386363636363644,
+      "Fusion vs imaging p": 0.1175968486230824,
+      "EHR \u0394 vs full": -0.145909090909091,
+      "EHR \u0394 lo": -0.2158423858818374,
+      "EHR \u0394 hi": -0.07597579593634457,
+      "EHR p": 4.325810801078807e-05,
+      "Average fusion \u0394 vs full": -0.1042045454545455,
+      "Average fusion \u0394 lo": -0.15583516481274182,
+      "Average fusion \u0394 hi": -0.052573926096349165,
+      "Average fusion p": 7.627583636765987e-05
+    },
+    {
+      "Model": "Without anticoagulant/thrombolytic medications",
+      "Features removed": 20,
+      "Features used": 1485,
+      "EHR AUROC": 0.9127272727272727,
+      "EHR lo": 0.8580568181818182,
+      "EHR hi": 0.9595454545454546,
+      "Average fusion AUROC": 0.94375,
+      "Average fusion lo": 0.9090880681818183,
+      "Average fusion hi": 0.9740909090909091,
+      "EHR AUROC nonsub": 0.917530487804878,
+      "Fusion AUROC nonsub": 0.9594512195121951,
+      "Fusion vs imaging \u0394": 0.14761363636363645,
+      "Fusion vs imaging p": 2.8420448461606994e-06,
+      "EHR \u0394 vs full": -0.0004545454545452632,
+      "EHR \u0394 lo": -0.0033196510086471124,
+      "EHR \u0394 hi": 0.002410560099556586,
+      "EHR p": 0.7558374337216347,
+      "Average fusion \u0394 vs full": -0.00045454545454548523,
+      "Average fusion \u0394 lo": -0.0030246515891127496,
+      "Average fusion \u0394 hi": 0.002115560680021779,
+      "Average fusion p": 0.7288595986068778
+    },
+    {
+      "Model": "Without d-dimer testing",
+      "Features removed": 2,
+      "Features used": 1503,
+      "EHR AUROC": 0.9140909090909092,
+      "EHR lo": 0.8603323863636364,
+      "EHR hi": 0.9607954545454546,
+      "Average fusion AUROC": 0.9459090909090909,
+      "Average fusion lo": 0.9114744318181818,
+      "Average fusion hi": 0.9754545454545455,
+      "EHR AUROC nonsub": 0.9182926829268292,
+      "Fusion AUROC nonsub": 0.9602134146341463,
+      "Fusion vs imaging \u0394": 0.1497727272727276,
+      "Fusion vs imaging p": 2.3886553702754384e-06,
+      "EHR \u0394 vs full": 0.0009090909090909705,
+      "EHR \u0394 lo": -0.0017077033772624965,
+      "EHR \u0394 hi": 0.0035258851954444374,
+      "EHR p": 0.4959243813596379,
+      "Average fusion \u0394 vs full": 0.0017045454545456806,
+      "Average fusion \u0394 lo": -0.0005685676080118031,
+      "Average fusion \u0394 hi": 0.003977658517103164,
+      "Average fusion p": 0.14162933633442337
+    },
+    {
+      "Model": "Without all three prespecified groups",
+      "Features removed": 24,
+      "Features used": 1481,
+      "EHR AUROC": 0.7397727272727272,
+      "EHR lo": 0.6665823863636364,
+      "EHR hi": 0.808650568181818,
+      "Average fusion AUROC": 0.8301136363636364,
+      "Average fusion lo": 0.7702159090909091,
+      "Average fusion hi": 0.8846676136363637,
+      "EHR AUROC nonsub": 0.7553353658536585,
+      "Fusion AUROC nonsub": 0.8679878048780488,
+      "Fusion vs imaging \u0394": 0.03397727272727291,
+      "Fusion vs imaging p": 0.24305291507955096,
+      "EHR \u0394 vs full": -0.17340909090909085,
+      "EHR \u0394 lo": -0.24362554420554577,
+      "EHR \u0394 hi": -0.1031926376126359,
+      "EHR p": 1.2952143315837509e-06,
+      "Average fusion \u0394 vs full": -0.11409090909090902,
+      "Average fusion \u0394 lo": -0.1669571306802561,
+      "Average fusion \u0394 hi": -0.061224687501561924,
+      "Average fusion p": 2.3380797370404255e-05
+    },
+    {
+      "Model": "Without all three + venous-disease diagnoses",
+      "Features removed": 26,
+      "Features used": 1479,
+      "EHR AUROC": 0.70875,
+      "EHR lo": 0.6292784090909092,
+      "EHR hi": 0.7808210227272727,
+      "Average fusion AUROC": 0.8223863636363636,
+      "Average fusion lo": 0.7619261363636362,
+      "Average fusion hi": 0.8777329545454546,
+      "EHR AUROC nonsub": 0.7239329268292684,
+      "Fusion AUROC nonsub": 0.8647865853658536,
+      "Fusion vs imaging \u0394": 0.026250000000000107,
+      "Fusion vs imaging p": 0.3397113687740808,
+      "EHR \u0394 vs full": -0.2044318181818181,
+      "EHR \u0394 lo": -0.2779257780407156,
+      "EHR \u0394 hi": -0.1309378583229206,
+      "EHR p": 4.98167702094112e-08,
+      "Average fusion \u0394 vs full": -0.12181818181818183,
+      "Average fusion \u0394 lo": -0.17503146765201888,
+      "Average fusion \u0394 hi": -0.06860489598434476,
+      "Average fusion p": 7.226095715008492e-06
+    }
+  ],
+  "grid_search": {
+    "best_params": {
+      "C": 0.1,
+      "l1_ratio": 0.99
+    },
+    "best_cv_auroc": 0.9251756432216025,
+    "cv_results": [
+      {
+        "C": 0.01,
+        "l1_ratio": 0.5,
+        "mean_cv_auroc": 0.9187128685840229
+      },
+      {
+        "C": 0.01,
+        "l1_ratio": 0.9,
+        "mean_cv_auroc": 0.8856535777416751
+      },
+      {
+        "C": 0.01,
+        "l1_ratio": 0.99,
+        "mean_cv_auroc": 0.8856535777416751
+      },
+      {
+        "C": 0.1,
+        "l1_ratio": 0.5,
+        "mean_cv_auroc": 0.9217781322090144
+      },
+      {
+        "C": 0.1,
+        "l1_ratio": 0.9,
+        "mean_cv_auroc": 0.9245310032993569
+      },
+      {
+        "C": 0.1,
+        "l1_ratio": 0.99,
+        "mean_cv_auroc": 0.9251756432216025
+      },
+      {
+        "C": 1.0,
+        "l1_ratio": 0.5,
+        "mean_cv_auroc": 0.8869188048098632
+      },
+      {
+        "C": 1.0,
+        "l1_ratio": 0.9,
+        "mean_cv_auroc": 0.895391159146383
+      },
+      {
+        "C": 1.0,
+        "l1_ratio": 0.99,
+        "mean_cv_auroc": 0.8968467275741284
+      }
+    ]
+  },
+  "sensitivity": [
+    {
+      "Analysis": "Standardization fitted on training split only",
+      "EHR AUROC": 0.8948863636363638,
+      "Average fusion AUROC": 0.9356818181818183
+    },
+    {
+      "Analysis": "Elastic-net tuned by 5-fold CV grid search (selected C=0.1, l1_ratio=0.99)",
+      "EHR AUROC": 0.9129545454545455,
+      "Average fusion AUROC": 0.9436363636363636
+    },
+    {
+      "Analysis": "Grid-searched elastic-net without all three prespecified groups (C=0.01, l1_ratio=0.5)",
+      "EHR AUROC": 0.7490340909090909,
+      "Average fusion AUROC": 0.8330681818181818
+    },
+    {
+      "Analysis": "SVC EHR estimator (Table 2 operating point model)",
+      "EHR AUROC": 0.9136363636363636,
+      "Average fusion AUROC": 0.9275
+    }
+  ]
+}

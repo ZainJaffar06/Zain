@@ -1,0 +1,9 @@
+Feature,Split,"PE-positive, n/N (%)","PE-negative, n/N (%)",Odds ratio,Fisher p
+Pulmonary-circulation diagnosis (presence),Training,474/508 (93.3),153/946 (16.2),72.25720876585929,2.362475387507731e-197
+Pulmonary-circulation diagnosis (presence),Test,97/110 (88.2),11/80 (13.8),46.80419580419581,2.0074368040990612e-26
+Any anticoagulant/thrombolytic (inpatient or outpatient),Training,130/508 (25.6),202/946 (21.4),1.2666980983812668,0.0767592564354198
+Any anticoagulant/thrombolytic (inpatient or outpatient),Test,40/110 (36.4),12/80 (15.0),3.238095238095238,0.0015864084029121538
+D-dimer measured,Training,151/508 (29.7),302/946 (31.9),0.9019607843137255,0.4060156286423222
+D-dimer measured,Test,32/110 (29.1),28/80 (35.0),0.7619047619047619,0.4308163875476785
+Venous-disease diagnosis (presence),Training,274/508 (53.9),195/946 (20.6),4.509620863467017,1.9713191952096903e-37
+Venous-disease diagnosis (presence),Test,54/110 (49.1),17/80 (21.2),3.573529411764706,0.00012873892586383337

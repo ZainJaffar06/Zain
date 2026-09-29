@@ -1,0 +1,27 @@
+feature,group
+DISEASES OF PULMONARY CIRCULATION:frequency,Pulmonary-circulation diagnoses
+DISEASES OF PULMONARY CIRCULATION:presence,Pulmonary-circulation diagnoses
+Outpatient_HEPARIN AND RELATED PREPARATIONS:Binary,Anticoagulant/thrombolytic medications
+"Outpatient_ANTICOAGULANTS,COUMARIN TYPE:Binary",Anticoagulant/thrombolytic medications
+Outpatient_THROMBOLYTIC ENZYMES:Binary,Anticoagulant/thrombolytic medications
+Outpatient_DIRECT FACTOR XA INHIBITORS:Binary,Anticoagulant/thrombolytic medications
+"Outpatient_THROMBIN INHIBITORS, SELECTIVE, DIRECT, REVERSIBLE:Binary",Anticoagulant/thrombolytic medications
+Outpatient_HEPARIN AND RELATED PREPARATIONS:Frequeny,Anticoagulant/thrombolytic medications
+"Outpatient_ANTICOAGULANTS,COUMARIN TYPE:Frequeny",Anticoagulant/thrombolytic medications
+Outpatient_THROMBOLYTIC ENZYMES:Frequeny,Anticoagulant/thrombolytic medications
+Outpatient_DIRECT FACTOR XA INHIBITORS:Frequeny,Anticoagulant/thrombolytic medications
+"Outpatient_THROMBIN INHIBITORS, SELECTIVE, DIRECT, REVERSIBLE:Frequeny",Anticoagulant/thrombolytic medications
+HEPARIN AND RELATED PREPARATIONS:Binary,Anticoagulant/thrombolytic medications
+"ANTICOAGULANTS,COUMARIN TYPE:Binary",Anticoagulant/thrombolytic medications
+THROMBOLYTIC ENZYMES:Binary,Anticoagulant/thrombolytic medications
+"THROMBIN INHIBITORS, SELECTIVE, DIRECT, REVERSIBLE:Binary",Anticoagulant/thrombolytic medications
+"THROMBIN INHIBITORS,SEL,DIRECT,REVERS-HIRUDIN TYPE:Binary",Anticoagulant/thrombolytic medications
+HEPARIN AND RELATED PREPARATIONS:Frequeny,Anticoagulant/thrombolytic medications
+"ANTICOAGULANTS,COUMARIN TYPE:Frequeny",Anticoagulant/thrombolytic medications
+THROMBOLYTIC ENZYMES:Frequeny,Anticoagulant/thrombolytic medications
+"THROMBIN INHIBITORS, SELECTIVE, DIRECT, REVERSIBLE:Frequeny",Anticoagulant/thrombolytic medications
+"THROMBIN INHIBITORS,SEL,DIRECT,REVERS-HIRUDIN TYPE:Frequeny",Anticoagulant/thrombolytic medications
+d-dimer:Binary,D-dimer testing
+d-dimer:Value,D-dimer testing
+"DISEASES OF VEINS AND LYMPHATICS, AND OTHER DISEASES OF CIRCULATORY SYSTEM:frequency",Venous-disease diagnoses
+"DISEASES OF VEINS AND LYMPHATICS, AND OTHER DISEASES OF CIRCULATORY SYSTEM:presence",Venous-disease diagnoses
