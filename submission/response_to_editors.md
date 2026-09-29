@@ -14,12 +14,12 @@ The largest change answers items 1–3. The label-leakage audit is now quantitat
 
 All analyses were re-run from the released data with a single script. The corrections we made along the way are listed at the end of this letter.
 
-**Title text in images (raised twice).** All figures were regenerated without embedded titles; captions now carry that information. Figure 1 never contained a title and is unchanged. Figure 3 no longer shows the "No Subsegmental" title.
+**Title text in images (raised twice).** All figures were regenerated without embedded titles; captions now carry that information. Figure 1 never contained a title; it was redrawn to show the new ablation step. Figure 3 no longer shows the "No Subsegmental" title.
 
 **Author/affiliation reconciliation.** The author, affiliation and e-mail are now identical in the manuscript and the submission profile:
 
 - Name: Zain A. Jaffar
-- Affiliation: School of Arts and Sciences, Rutgers University, New Brunswick, USA
+- Affiliation: Department of Cell Biology and Neuroscience, Rutgers University, New Brunswick, USA
 - E-mail: zaj14@scarletmail.rutgers.edu
 
 The Dermatology and Biostatistics entries have been removed (see item 4).
@@ -30,12 +30,12 @@ The Dermatology and Biostatistics entries have been removed (see item 4).
 - each preprocessing step, with feature counts (new Table 2);
 - missing-data handling;
 - exact model configurations: elastic-net C=0.1 and L1 ratio 0.99 with balanced class weights; SVC with an RBF kernel, C=1 and γ="scale";
-- the cross-validated grid search, with its search space and selected values (Supplementary Table S1);
+- the cross-validated grid search, with its search space and selected values (Supplementary Table S2);
 - the fusion rules, which have no learned parameters;
 - statistical methods;
 - a new "Label-leakage audit" subsection that states the prespecified criteria for leakage-candidate features and the three-step procedure (attribution, descriptive association, feature-exclusion ablation).
 
-The exact column list for each group is given in Supplementary Table S2.
+The exact column list for each group is given in Supplementary Table S1.
 
 **2. Results: quantitative reporting.** All AUROC and AUPRC values now carry bootstrap 95% CIs (Table 3). Between-arm differences are tested with paired DeLong tests (Table 4). The leakage findings are reported numerically:
 
@@ -49,7 +49,7 @@ The exact column list for each group is given in Supplementary Table S2.
 - the limitations of the audit, in particular that without timestamps reliance cannot be split into leakage versus legitimate history;
 - a new "Recommendations for multimodal benchmarking" subsection with five concrete practices.
 
-**4. Degree and affiliation.** The author is an undergraduate student at Rutgers University and holds no degree yet. The Dermatology and Biostatistics entries did not reflect an appointment or a unit that supported this work, so they have been removed. The single affiliation is School of Arts and Sciences, Rutgers University, New Brunswick, USA.
+**4. Degree and affiliation.** The author is an undergraduate student (B.S. candidate, Cell Biology and Neuroscience) at Rutgers University and holds no degree yet. The Dermatology and Biostatistics entries reflected unrelated activities, not an appointment or a unit that supported this work, so they have been removed. The single affiliation is Department of Cell Biology and Neuroscience, Rutgers University, New Brunswick, USA.
 
 **5. Citations.** All citable statements are now referenced. The reference list grew from 11 to 29 entries, adding:
 
@@ -78,15 +78,15 @@ The orphaned duplicate caption and the duplicate paragraph under Table 1 were re
 **9. Online Resource 1.** Renamed "Supplementary Appendix" to follow Cureus conventions and uploaded as a supplementary file. It contains:
 
 - Supplementary Figure S1: the global SHAP importance, replacing an earlier coefficient heatmap;
-- Supplementary Table S1: sensitivity analyses;
-- Supplementary Table S2: leakage-candidate columns;
+- Supplementary Table S1: leakage-candidate columns;
+- Supplementary Table S2: sensitivity analyses;
 - Supplementary Table S3: the updated TRIPOD+AI map.
 
 All in-text references were updated.
 
-**10. Affiliation string.** This is a single affiliation, not two affiliations or a cross-departmental appointment. It is formatted as School of Arts and Sciences, Rutgers University, New Brunswick, USA.
+**10. Affiliation string.** This is a single affiliation, not two affiliations or a cross-departmental appointment. It is formatted as Department of Cell Biology and Neuroscience, Rutgers University, New Brunswick, USA.
 
-**11. Image creation.** Each figure legend now names the software used: Python, matplotlib, scikit-learn and SHAP, with versions.
+**11. Image creation.** Each figure legend now names the software used to create it: Python, matplotlib, scikit-learn and SHAP, with versions. Figure 1 was redrawn in matplotlib to include the feature-exclusion ablation step.
 
 **12. Discussion citations.** The Discussion now cites:
 

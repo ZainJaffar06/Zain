@@ -2,7 +2,7 @@
 
 **Figure 1: Overview of the reproduced pipeline and audit**
 
-*The imaging input is the study-level PENet score distributed with RadFusion (grey: reused, not retrained). The EHR arm is an independently re-implemented elastic-net logistic model (green). The two probabilities are combined by late fusion (average or maximum) to give a study-level PE prediction. SHAP attribution of the EHR arm supports feature interpretation and the label-leakage audit (orange), which is quantified by the feature-exclusion ablation. Created by the author in Python using matplotlib. CTPA: computed tomography pulmonary angiography; EHR: electronic health record; PE: pulmonary embolism; SHAP: SHapley Additive exPlanations.*
+*The imaging input is the study-level PENet score distributed with RadFusion (grey: reused, not retrained). The EHR arm is an independently re-implemented elastic-net logistic model (green). The two probabilities are combined by late fusion (average or maximum) to give a study-level PE prediction (blue). The label-leakage audit of the EHR arm (orange) comprises SHAP attribution, the prevalence of leakage-candidate features by PE status, and a feature-exclusion ablation. Created in Python 3.11.15 using matplotlib 3.11.2. CTPA: computed tomography pulmonary angiography; EHR: electronic health record; PE: pulmonary embolism; SHAP: SHapley Additive exPlanations.*
 
 **Figure 2: ROC curves on the full test cohort (n=190)**
 

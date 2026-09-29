@@ -24,7 +24,7 @@ Pulmonary embolism (PE) is a common and potentially fatal manifestation of venou
 
 Deep learning for PE has advanced along two tracks. Imaging models range from vessel-aligned convolutional networks [9] and two-stage detectors [10] to end-to-end volumetric classifiers such as PENet [11], purpose-built detection networks [12], and multitask imaging models [13]. Separately, EHR-only models predict PE from structured clinical data [14]. The RadFusion benchmark combined the two and showed that multimodal fusion of CTPA and EHR outperforms either modality alone [15,16]. Even so, most approaches remain unimodal and opaque. This limits clinical trust, because such models neither reflect the multimodal reasoning of radiologists nor expose the basis of a prediction [17].
 
-Three gaps motivate this work. First, independent reproductions of medical machine-learning results are uncommon, even though reproducibility is a prerequisite for trustworthy translation [18]. Second, interpretability is rarely evaluated alongside performance. Third, and specific to this benchmark: when a model draws on longitudinal EHR features, some of those features may be recorded at the same time as, or after, the diagnosis they are used to predict. This is a form of target (label) leakage, a well-described cause of optimistic performance in machine learning [19,20].
+Three gaps motivate this work. First, independent reproductions of medical machine-learning results are uncommon, even though reproducibility is a prerequisite for trustworthy translation [18]. Second, interpretability is rarely evaluated alongside performance [17]. Third, and specific to this benchmark: when a model draws on longitudinal EHR features, some of those features may be recorded at the same time as, or after, the diagnosis they are used to predict. This is a form of target (label) leakage, a well-described cause of optimistic performance in machine learning [19,20].
 
 We therefore hold the imaging input fixed by reusing the study-level vision-model scores distributed with the benchmark, re-implement the EHR arm independently, and reproduce the late-fusion step. We then audit the resulting EHR model with feature attribution and quantify the audit with a feature-exclusion ablation. Throughout, "detection" denotes study-level classification (PE present versus absent), not embolus localization. Our contributions are:
 
@@ -68,7 +68,7 @@ Standardization used the mean and standard deviation across all 1,837 studies. T
 
 The primary EHR model was an elastic-net-regularized logistic regression (scikit-learn LogisticRegression; saga solver). Its hyperparameters were fixed a priori to those of the reference implementation [15]: inverse regularization strength C=0.1, L1 ratio 0.99, a maximum of 1,000 iterations, and random seed 0. Class imbalance was handled with balanced class weights, which are inversely proportional to class frequency in the training split. The model was fitted on the training split only (1,454 studies). The validation split was not used for fitting or model selection, and the test split was used only for evaluation. Of the {{n_features}} input features, {{n_nonzero}} received a non-zero coefficient.
 
-A sensitivity analysis tuned the same model on the training split by five-fold stratified cross-validated grid search, scored by AUROC, over C ∈ {0.01, 0.1, 1.0} and L1 ratio ∈ {0.5, 0.9, 0.99}. As a secondary EHR estimator, used for the specificity-oriented operating point in Table 5, a support-vector classifier (SVC) was fitted: radial basis function kernel, C=1.0, γ="scale", no class weighting, with probability estimates from scikit-learn's internal Platt scaling. {{svc_sentence}} Multidimensional scaling was used for exploratory visualization only.
+A sensitivity analysis tuned the same model on the training split by five-fold stratified cross-validated grid search, scored by AUROC, over C ∈ {0.01, 0.1, 1.0} and L1 ratio ∈ {0.5, 0.9, 0.99}. As a secondary EHR estimator, used only for the specificity-oriented operating point, a support-vector classifier (SVC) was fitted: radial basis function kernel, C=1.0, γ="scale", no class weighting, with probability estimates from scikit-learn's internal Platt scaling. {{svc_sentence}} Multidimensional scaling was used for exploratory visualization only.
 
 ## Late fusion
 
@@ -86,7 +86,7 @@ Before any ablation result was computed, we prespecified three leakage-candidate
 - **(b) Treatments for the target condition.** Inpatient and outpatient heparin and related preparations, coumarin-type anticoagulants, direct factor Xa inhibitors, direct thrombin inhibitors, and thrombolytic enzymes: 20 features.
 - **(c) Diagnostic workup for the target condition.** D-dimer presence and latest value: 2 features.
 
-A fourth, secondary group was defined by the same logic: **(d) venous-disease diagnoses** (the grouping containing deep-vein thrombosis; 2 features). It captures a condition that is typically diagnosed during the PE workup. The exact column list is given in Supplementary Table S2 and is released with the code.
+A fourth, secondary group was defined by the same logic: **(d) venous-disease diagnoses** (the grouping containing deep-vein thrombosis; 2 features). It captures a condition that is typically diagnosed during the PE workup. The exact column list is given in Supplementary Table S1 and is released with the code.
 
 The audit had three steps:
 
@@ -104,7 +104,7 @@ At a fixed, untuned probability threshold of 0.5 we report:
 
 - sensitivity, specificity, positive and negative predictive values (PPV, NPV), and accuracy, each as n/N (%) with Wilson score 95% CIs [25];
 - F1 score;
-- positive and negative likelihood ratios (LR+, LR−), with 95% CIs by the log method [26].
+- positive and negative likelihood ratios (LR+, LR−), with 95% CIs by the log method [26]; unlike predictive values, likelihood ratios do not depend on disease prevalence [26].
 
 Associations between binary features and the PE label were tested with Fisher's exact test.
 
@@ -221,7 +221,7 @@ The non-subsegmental subset showed the same pattern (**Table 8**).
 
 ## Sensitivity analyses
 
-**Supplementary Table S1** reports the sensitivity analyses.
+**Supplementary Table S2** reports the sensitivity analyses.
 
 - **Standardization fitted on the training split only:** EHR AUROC {{s_scale_ehr}}, fusion AUROC {{s_scale_avg}}.
 - **Cross-validated grid search:** selected {{gs_params}} and gave EHR {{s_gs_ehr}} and fusion {{s_gs_avg}}.

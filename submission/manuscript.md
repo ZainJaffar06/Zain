@@ -2,7 +2,7 @@
 
 Zain A. Jaffar ^1^
 
-^1^ School of Arts and Sciences, Rutgers University, New Brunswick, USA
+^1^ Department of Cell Biology and Neuroscience, Rutgers University, New Brunswick, USA
 
 Corresponding author: Zain A. Jaffar, zaj14@scarletmail.rutgers.edu
 
@@ -24,7 +24,7 @@ Pulmonary embolism (PE) is a common and potentially fatal manifestation of venou
 
 Deep learning for PE has advanced along two tracks. Imaging models range from vessel-aligned convolutional networks [9] and two-stage detectors [10] to end-to-end volumetric classifiers such as PENet [11], purpose-built detection networks [12], and multitask imaging models [13]. Separately, EHR-only models predict PE from structured clinical data [14]. The RadFusion benchmark combined the two and showed that multimodal fusion of CTPA and EHR outperforms either modality alone [15,16]. Even so, most approaches remain unimodal and opaque. This limits clinical trust, because such models neither reflect the multimodal reasoning of radiologists nor expose the basis of a prediction [17].
 
-Three gaps motivate this work. First, independent reproductions of medical machine-learning results are uncommon, even though reproducibility is a prerequisite for trustworthy translation [18]. Second, interpretability is rarely evaluated alongside performance. Third, and specific to this benchmark: when a model draws on longitudinal EHR features, some of those features may be recorded at the same time as, or after, the diagnosis they are used to predict. This is a form of target (label) leakage, a well-described cause of optimistic performance in machine learning [19,20].
+Three gaps motivate this work. First, independent reproductions of medical machine-learning results are uncommon, even though reproducibility is a prerequisite for trustworthy translation [18]. Second, interpretability is rarely evaluated alongside performance [17]. Third, and specific to this benchmark: when a model draws on longitudinal EHR features, some of those features may be recorded at the same time as, or after, the diagnosis they are used to predict. This is a form of target (label) leakage, a well-described cause of optimistic performance in machine learning [19,20].
 
 We therefore hold the imaging input fixed by reusing the study-level vision-model scores distributed with the benchmark, re-implement the EHR arm independently, and reproduce the late-fusion step. We then audit the resulting EHR model with feature attribution and quantify the audit with a feature-exclusion ablation. Throughout, "detection" denotes study-level classification (PE present versus absent), not embolus localization. Our contributions are:
 
@@ -68,7 +68,7 @@ Standardization used the mean and standard deviation across all 1,837 studies. T
 
 The primary EHR model was an elastic-net-regularized logistic regression (scikit-learn LogisticRegression; saga solver). Its hyperparameters were fixed a priori to those of the reference implementation [15]: inverse regularization strength C=0.1, L1 ratio 0.99, a maximum of 1,000 iterations, and random seed 0. Class imbalance was handled with balanced class weights, which are inversely proportional to class frequency in the training split. The model was fitted on the training split only (1,454 studies). The validation split was not used for fitting or model selection, and the test split was used only for evaluation. Of the 1,505 input features, 199 received a non-zero coefficient.
 
-A sensitivity analysis tuned the same model on the training split by five-fold stratified cross-validated grid search, scored by AUROC, over C ∈ {0.01, 0.1, 1.0} and L1 ratio ∈ {0.5, 0.9, 0.99}. As a secondary EHR estimator, used for the specificity-oriented operating point in Table 5, a support-vector classifier (SVC) was fitted: radial basis function kernel, C=1.0, γ="scale", no class weighting, with probability estimates from scikit-learn's internal Platt scaling. The SVC hyperparameters were library defaults and were not tuned. Multidimensional scaling was used for exploratory visualization only.
+A sensitivity analysis tuned the same model on the training split by five-fold stratified cross-validated grid search, scored by AUROC, over C ∈ {0.01, 0.1, 1.0} and L1 ratio ∈ {0.5, 0.9, 0.99}. As a secondary EHR estimator, used only for the specificity-oriented operating point, a support-vector classifier (SVC) was fitted: radial basis function kernel, C=1.0, γ="scale", no class weighting, with probability estimates from scikit-learn's internal Platt scaling. The SVC hyperparameters were library defaults and were not tuned. Multidimensional scaling was used for exploratory visualization only.
 
 ## Late fusion
 
@@ -86,7 +86,7 @@ Before any ablation result was computed, we prespecified three leakage-candidate
 - **(b) Treatments for the target condition.** Inpatient and outpatient heparin and related preparations, coumarin-type anticoagulants, direct factor Xa inhibitors, direct thrombin inhibitors, and thrombolytic enzymes: 20 features.
 - **(c) Diagnostic workup for the target condition.** D-dimer presence and latest value: 2 features.
 
-A fourth, secondary group was defined by the same logic: **(d) venous-disease diagnoses** (the grouping containing deep-vein thrombosis; 2 features). It captures a condition that is typically diagnosed during the PE workup. The exact column list is given in Supplementary Table S2 and is released with the code.
+A fourth, secondary group was defined by the same logic: **(d) venous-disease diagnoses** (the grouping containing deep-vein thrombosis; 2 features). It captures a condition that is typically diagnosed during the PE workup. The exact column list is given in Supplementary Table S1 and is released with the code.
 
 The audit had three steps:
 
@@ -104,7 +104,7 @@ At a fixed, untuned probability threshold of 0.5 we report:
 
 - sensitivity, specificity, positive and negative predictive values (PPV, NPV), and accuracy, each as n/N (%) with Wilson score 95% CIs [25];
 - F1 score;
-- positive and negative likelihood ratios (LR+, LR−), with 95% CIs by the log method [26].
+- positive and negative likelihood ratios (LR+, LR−), with 95% CIs by the log method [26]; unlike predictive values, likelihood ratios do not depend on disease prevalence [26].
 
 Associations between binary features and the PE label were tested with Fisher's exact test.
 
@@ -221,7 +221,7 @@ The non-subsegmental subset showed the same pattern (**Table 8**).
 
 ## Sensitivity analyses
 
-**Supplementary Table S1** reports the sensitivity analyses.
+**Supplementary Table S2** reports the sensitivity analyses.
 
 - **Standardization fitted on the training split only:** EHR AUROC 0.89, fusion AUROC 0.94.
 - **Cross-validated grid search:** selected C=0.1 and L1 ratio 0.99, the same as the reference configuration, and gave EHR 0.91 and fusion 0.94.
@@ -407,7 +407,7 @@ With the imaging input held fixed, an independently re-implemented EHR arm and l
 | LR− (95% CI) | 0.36 (0.27–0.47) | 0.05 (0.02–0.15) |
 | Confusion matrix (TP/FP/FN/TN) | 73/5/37/75 | 106/27/4/53 |
 
-*Proportions are shown as n/N (%) followed by the proportion with its Wilson score 95% CI. Likelihood-ratio 95% CIs use the log method. No hypothesis test was performed. Predictive values depend on the enriched test-set prevalence (57.9%) and are optimistic relative to routine practice; likelihood ratios are prevalence-independent. **The EHR column reflects the support-vector classifier (SVC) variant, not the elastic-net logistic model whose discrimination is reported in Table 3.** PE: pulmonary embolism; EHR: electronic health record; PPV/NPV: positive/negative predictive value; LR+/LR−: positive/negative likelihood ratio; TP/FP/FN/TN: true positives/false positives/false negatives/true negatives; CI: confidence interval; F1: harmonic mean of PPV and sensitivity.*
+*Proportions are shown as n/N (%) followed by the proportion with its Wilson score 95% CI. Likelihood-ratio 95% CIs use the log method. No hypothesis test was performed. Predictive values depend on the enriched test-set prevalence (57.9%) and are optimistic relative to routine practice; likelihood ratios are prevalence-independent. **The EHR column reflects the support-vector classifier (SVC) variant, not the elastic-net logistic model whose discrimination is reported in Table 3.** PE: pulmonary embolism; EHR: electronic health record; SVC: support-vector classifier; PPV/NPV: positive/negative predictive value; LR+/LR−: positive/negative likelihood ratio; TP/FP/FN/TN: true positives/false positives/false negatives/true negatives; CI: confidence interval; F1: harmonic mean of PPV and sensitivity.*
 
 **Table 6: Ten highest-ranked EHR features by SHAP attribution**
 
@@ -452,7 +452,7 @@ With the imaging input held fixed, an independently re-implemented EHR arm and l
 | Without all three prespecified groups | 24 / 1,481 | 0.74 (0.67–0.81) | −0.173 (−0.244 to −0.103); <0.001 | 0.83 (0.77–0.88) | −0.114 (−0.167 to −0.061); <0.001 | +0.034; 0.243 | 0.76 / 0.87 |
 | Without all three + venous-disease diagnoses | 26 / 1,479 | 0.71 (0.63–0.78) | −0.204 (−0.278 to −0.131); <0.001 | 0.82 (0.76–0.88) | −0.122 (−0.175 to −0.069); <0.001 | +0.026; 0.340 | 0.72 / 0.86 |
 
-*Each row refits the elastic-net EHR model with the reference configuration after removing the listed feature group(s); average late fusion is recomputed with the fixed imaging score (imaging-alone AUROC 0.80). AUROC 95% CIs are from 2,000 stratified bootstrap resamples; differences (Δ), their 95% CIs and two-sided p-values are from paired DeLong tests against the full model, or against imaging alone in the penultimate column. Groups were prespecified on clinical criteria before the ablation was run (Supplementary Table S2). A fall in AUROC measures reliance on the excluded features and does not by itself establish leakage. AUROC: area under the receiver operating characteristic curve; CI: confidence interval; EHR: electronic health record.*
+*Each row refits the elastic-net EHR model with the reference configuration after removing the listed feature group(s); average late fusion is recomputed with the fixed imaging score (imaging-alone AUROC 0.80). AUROC 95% CIs are from 2,000 stratified bootstrap resamples; differences (Δ), their 95% CIs and two-sided p-values are from paired DeLong tests against the full model, or against imaging alone in the penultimate column. Groups were prespecified on clinical criteria before the ablation was run (Supplementary Table S1). A fall in AUROC measures reliance on the excluded features and does not by itself establish leakage. AUROC: area under the receiver operating characteristic curve; CI: confidence interval; EHR: electronic health record.*
 
 # Figures
 
@@ -460,7 +460,7 @@ With the imaging input held fixed, an independently re-implemented EHR arm and l
 
 **Figure 1: Overview of the reproduced pipeline and audit**
 
-*The imaging input is the study-level PENet score distributed with RadFusion (grey: reused, not retrained). The EHR arm is an independently re-implemented elastic-net logistic model (green). The two probabilities are combined by late fusion (average or maximum) to give a study-level PE prediction. SHAP attribution of the EHR arm supports feature interpretation and the label-leakage audit (orange), which is quantified by the feature-exclusion ablation. Created by the author in Python using matplotlib. CTPA: computed tomography pulmonary angiography; EHR: electronic health record; PE: pulmonary embolism; SHAP: SHapley Additive exPlanations.*
+*The imaging input is the study-level PENet score distributed with RadFusion (grey: reused, not retrained). The EHR arm is an independently re-implemented elastic-net logistic model (green). The two probabilities are combined by late fusion (average or maximum) to give a study-level PE prediction (blue). The label-leakage audit of the EHR arm (orange) comprises SHAP attribution, the prevalence of leakage-candidate features by PE status, and a feature-exclusion ablation. Created in Python 3.11.15 using matplotlib 3.11.2. CTPA: computed tomography pulmonary angiography; EHR: electronic health record; PE: pulmonary embolism; SHAP: SHapley Additive exPlanations.*
 
 ![](figures/Figure_2_ROC_full_test_cohort.png){width=6in}
 

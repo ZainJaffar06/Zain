@@ -43,7 +43,7 @@ tripod = [
  ("8", "Predictors: definition, timing, preprocessing.", "Materials & Methods: EHR feature processing; Label-leakage audit; Table 2", "Partially reported: definitions and preprocessing reported; timing relative to index study is not available in the released data (Discussion: Temporal label leakage)."),
  ("9", "Sample size and justification.", "Materials & Methods: Sample size", "Reported: fixed by the benchmark; no a priori calculation; precision reported as 95% CIs."),
  ("10", "Missing data handling.", "Materials & Methods: EHR feature processing", "Reported: no missing values after joining; duplicates and zero-variance columns removed."),
- ("11", "Analytical methods: model type, tuning, internal validation.", "Materials & Methods: EHR models; Late fusion; Supplementary Table S1", "Reported: elastic-net (fixed reference hyperparameters; CV grid search as sensitivity analysis) and SVC; fusion rules without learned parameters."),
+ ("11", "Analytical methods: model type, tuning, internal validation.", "Materials & Methods: EHR models; Late fusion; Supplementary Table S2", "Reported: elastic-net (fixed reference hyperparameters; CV grid search as sensitivity analysis) and SVC; fusion rules without learned parameters."),
  ("12", "Class imbalance.", "Materials & Methods: EHR models", "Reported: balanced class weights (elastic-net)."),
  ("13", "Model output and thresholds.", "Materials & Methods: Statistical analysis", "Reported: probabilities; fixed untuned 0.5 threshold (Limitations)."),
  ("14", "Performance measures and rationale.", "Materials & Methods: Statistical analysis", "Reported: AUROC/AUPRC with bootstrap CIs, DeLong tests, Wilson CIs, likelihood ratios."),
@@ -83,21 +83,21 @@ out = f"""# Supplementary Appendix
 
 ## Supplementary Table S1
 
-**Supplementary Table S1: Sensitivity analyses (full test cohort, n=190)**
+**Supplementary Table S1: Columns in each prespecified leakage-candidate feature group**
+
+{md(src)}
+
+*Column names are reproduced exactly as released, including the dataset's spelling ("Frequeny"). Groups (a)–(c) were defined by the criteria in Materials & Methods (Label-leakage audit); group (d) is secondary. Only columns retained after zero-variance removal are listed. ICD: International Classification of Diseases.*
+
+## Supplementary Table S2
+
+**Supplementary Table S2: Sensitivity analyses (full test cohort, n=190)**
 
 {md(pd.DataFrame(rows))}
 
 *Grid search used five-fold stratified cross-validation on the training split (1,454 studies), scored by AUROC. Cross-validated AUROC for each candidate configuration is shown below. The SVC row reports discrimination of the estimator used for the Table 5 operating point. AUROC: area under the receiver operating characteristic curve; CV: cross-validation; EHR: electronic health record; SVC: support-vector classifier.*
 
 {md(cv)}
-
-## Supplementary Table S2
-
-**Supplementary Table S2: Columns in each prespecified leakage-candidate feature group**
-
-{md(src)}
-
-*Column names are reproduced exactly as released, including the dataset's spelling ("Frequeny"). Groups (a)–(c) were defined by the criteria in Materials & Methods (Label-leakage audit); group (d) is secondary. Only columns retained after zero-variance removal are listed. ICD: International Classification of Diseases.*
 
 ## Supplementary Table S3
 
