@@ -1,0 +1,5 @@
+Analysis,EHR AUROC,Average fusion AUROC
+Standardization fitted on training split only,0.8948863636363638,0.9356818181818183
+"Elastic-net tuned by 5-fold CV grid search (selected C=0.1, l1_ratio=0.99)",0.9129545454545455,0.9436363636363636
+"Grid-searched elastic-net without all three prespecified groups (C=0.01, l1_ratio=0.5)",0.7490340909090909,0.8330681818181818
+SVC EHR estimator (Table 2 operating point model),0.9136363636363636,0.9275

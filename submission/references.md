@@ -1,0 +1,29 @@
+1. Wendelboe AM, Raskob GE: Global burden of thrombosis: epidemiologic aspects. Circ Res. 2016, 118:1340-1347. 10.1161/CIRCRESAHA.115.306841
+2. Konstantinides SV, Meyer G, Becattini C, et al.: 2019 ESC guidelines for the diagnosis and management of acute pulmonary embolism developed in collaboration with the European Respiratory Society (ERS). Eur Heart J. 2020, 41:543-603. 10.1093/eurheartj/ehz405
+3. Wells PS, Anderson DR, Rodger M, et al.: Derivation of a simple clinical model to categorize patients probability of pulmonary embolism: increasing the models utility with the SimpliRED D-dimer. Thromb Haemost. 2000, 83:416-420. 10.1055/s-0037-1613830
+4. Le Gal G, Righini M, Roy PM, et al.: Prediction of pulmonary embolism in the emergency department: the revised Geneva score. Ann Intern Med. 2006, 144:165-171. 10.7326/0003-4819-144-3-200602070-00004
+5. Kline JA, Mitchell AM, Kabrhel C, Richman PB, Courtney DM: Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost. 2004, 2:1247-1255. 10.1111/j.1538-7836.2004.00790.x
+6. van der Hulle T, Cheung WY, Kooij S, et al.: Simplified diagnostic management of suspected pulmonary embolism (the YEARS study): a prospective, multicentre, cohort study. Lancet. 2017, 390:289-297. 10.1016/S0140-6736(17)30885-1
+7. Righini M, Van Es J, Den Exter PL, et al.: Age-adjusted D-dimer cutoff levels to rule out pulmonary embolism: the ADJUST-PE study. JAMA. 2014, 311:1117-1124. 10.1001/jama.2014.2135
+8. Rimmer A: Radiologist shortage leaves patient care at risk, warns royal college. BMJ. 2017, 359:j4683. 10.1136/bmj.j4683
+9. Tajbakhsh N, Gotway MB, Liang J: Computer-aided pulmonary embolism detection using a novel vessel-aligned multi-planar image representation and convolutional neural networks. Medical Image Computing and Computer-Assisted Intervention – MICCAI 2015. Navab N, Hornegger J, Wells WM, Frangi AF (ed): Springer, Cham; 2015. 9350:62-69. 10.1007/978-3-319-24571-3_8
+10. Yang X, Lin Y, Su J, Wang X, Li X, Lin J, Cheng KT: A two-stage convolutional neural network for pulmonary embolism detection from CTPA images. IEEE Access. 2019, 7:84849-84857. 10.1109/ACCESS.2019.2925210
+11. Huang SC, Kothari T, Banerjee I, et al.: PENet—a scalable deep-learning model for automated diagnosis of pulmonary embolism using volumetric CT imaging. NPJ Digit Med. 2020, 3:61. 10.1038/s41746-020-0266-y
+12. Lynch D, Suriya M: PE-DeepNet: a deep neural network model for pulmonary embolism detection. Int J Intell Netw. 2022, 3:176-180. 10.1016/j.ijin.2022.10.001
+13. Ma X, Ferguson EC, Jiang X, Savitz SI, Shams S: A multitask deep learning approach for pulmonary embolism detection and identification. Sci Rep. 2022, 12:13087. 10.1038/s41598-022-16976-9
+14. Banerjee I, Sofela M, Yang J, et al.: Development and performance of the pulmonary embolism result forecast model (PERFORM) for computed tomography clinical decision support. JAMA Netw Open. 2019, 2:e198719. 10.1001/jamanetworkopen.2019.8719
+15. Huang SC, Pareek A, Zamanian R, Banerjee I, Lungren MP: Multimodal fusion with deep neural networks for leveraging CT imaging and electronic health record: a case-study in pulmonary embolism detection. Sci Rep. 2020, 10:22147. 10.1038/s41598-020-78888-w
+16. Zhou Y, Huang SC, Fries JA, et al.: RadFusion: benchmarking performance and fairness for multimodal pulmonary embolism detection from CT and EHR [Preprint]. arXiv. 2021, 10.48550/arXiv.2111.11665
+17. Singh A, Sengupta S, Lakshminarayanan V: Explainable deep learning models in medical image analysis. J Imaging. 2020, 6:52. 10.3390/jimaging6060052
+18. McDermott MB, Wang S, Marinsek N, Ranganath R, Foschini L, Ghassemi M: Reproducibility in machine learning for health research: still a ways to go. Sci Transl Med. 2021, 13:eabb1655. 10.1126/scitranslmed.abb1655
+19. Kaufman S, Rosset S, Perlich C, Stitelman O: Leakage in data mining: formulation, detection, and avoidance. ACM Trans Knowl Discov Data. 2012, 6:15. 10.1145/2382577.2382579
+20. Kapoor S, Narayanan A: Leakage and the reproducibility crisis in machine-learning-based science. Patterns (N Y). 2023, 4:100804. 10.1016/j.patter.2023.100804
+21. Collins GS, Moons KG, Dhiman P, et al.: TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods. BMJ. 2024, 385:e078378. 10.1136/bmj-2023-078378
+22. Lundberg SM, Lee SI: A unified approach to interpreting model predictions. Advances in Neural Information Processing Systems 30 (NIPS 2017). Guyon I, Von Luxburg U, Bengio S, et al. (ed): Curran Associates, Red Hook, NY; 2017. 4765-4774.
+23. International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM) and Tenth Revision, Clinical Modification (ICD-10-CM). (2024). Accessed: September 29, 2026: https://www.cdc.gov/nchs/icd/index.html.
+24. DeLong ER, DeLong DM, Clarke-Pearson DL: Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach. Biometrics. 1988, 44:837-845. 10.2307/2531595
+25. Wilson EB: Probable inference, the law of succession, and statistical inference. J Am Stat Assoc. 1927, 22:209-212. 10.1080/01621459.1927.10502953
+26. Simel DL, Samsa GP, Matchar DB: Likelihood ratios with confidence: sample size estimation for diagnostic test studies. J Clin Epidemiol. 1991, 44:763-770. 10.1016/0895-4356(91)90128-v
+27. Pedregosa F, Varoquaux G, Gramfort A, et al.: Scikit-learn: machine learning in Python. J Mach Learn Res. 2011, 12:2825-2830.
+28. Agniel D, Kohane IS, Weber GM: Biases in electronic health record data due to processes within the healthcare system: retrospective observational study. BMJ. 2018, 361:k1479. 10.1136/bmj.k1479
+29. Vickers AJ, Elkin EB: Decision curve analysis: a novel method for evaluating prediction models. Med Decis Making. 2006, 26:565-574. 10.1177/0272989X06295361
